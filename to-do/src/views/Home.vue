@@ -10,7 +10,7 @@
         </div>
 
         <!-- Login Form -->
-        <form v-on:sumit.prevent="login">
+        <form v-on:submit.prevent="login">
           <input type="text" id="login" class="fadeIn second" name="login" placeholder="usuario" v-model="usuario">
           <input type="text" id="password" class="fadeIn third" name="login" placeholder="password" v-model="password">
           <input type="submit" class="fadeIn fourth" value="Log In">
@@ -39,7 +39,7 @@
         usuario: "",
         password: "",
         error: false,
-        error_msg: "",
+        error_msg: "Constraseña incorrecta",
       }
     },
     methods:{
@@ -48,7 +48,7 @@
           "usuario" : this.usuario,
           "password": this.password
         };
-        axios.post('https://solodata.es/auth', json)
+        axios.post('https://api.solodata.es/', json)
         .then( data =>{
             if(data.data.status == "ok"){
               localStorage.token = data.data.result.token;

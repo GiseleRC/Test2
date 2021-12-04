@@ -1,63 +1,63 @@
 <template>
-  
-  <div class="container" >
-    <h2 class="text-center mt-5">My vue todo app</h2>
+  <div>
+    
+      <div class="container" >
+        <h2 class="text-center mt-5">My vue todo app</h2>
 
-    <!-- inputs -->
-    <form method="post" action="">
-      <div class="d-flex">
-        <input v-model="task" type="text" placeholder="Enter task" class="form-control">
-        <button @click="submitTask" class="btn btn-warning rounded-0">Submit</button>
+        <!-- inputs -->
+        <form method="post" action="">
+          <div class="d-flex">
+            <input v-model="task" type="text" placeholder="Enter task" class="form-control">
+            <button @click="submitTask" class="btn btn-warning rounded-0">Submit</button>
+          </div>
+        </form>
+        <!-- task tab -->
+        <table class="table table-bordered mt-5">
+          <thead>
+            <tr>
+              <th scope="col" class="text-center">Task</th>
+              <th scope="col" class="text-center">Status</th>
+              <th scope="col" class="text-center">Edit</th>
+              <th scope="col" class="text-center">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(task, index) in tasks" :key="index">
+              <td>
+                <span :class="{'finished': task.status === 'finished'}">{{task.name}}</span>
+              </td>
+              <td style="width: 120px">
+                <span @click="changeStatus(index)" class="pointer"
+                  :class="{'text-danger': task.status === 'to-do', 
+                  'text-warning': task.status === 'in-progress',
+                  'text-success': task.status === 'finished'
+                  }"
+                >
+                  {{firstCharUpper(task.status)}}
+                </span>
+              </td>
+              <td>
+                <div class="text-center" @click="editTask(index)">
+                  <span class="fa fa-pen"></span>
+                </div>
+              </td>
+              <td>
+                <div class="text-center" @click="deleteTask(index)">
+                  <span class="fa fa-trash"></span>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-    </form>
-    <!-- task tab -->
-    <table class="table table-bordered mt-5">
-      <thead>
-        <tr>
-          <th scope="col" class="text-center">Task</th>
-          <th scope="col" class="text-center">Status</th>
-          <th scope="col" class="text-center">Edit</th>
-          <th scope="col" class="text-center">Delete</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(task, index) in tasks" :key="index">
-          <td>
-            <span :class="{'finished': task.status === 'finished'}">{{task.name}}</span>
-          </td>
-          <td style="width: 120px">
-            <span @click="changeStatus(index)" class="pointer"
-              :class="{'text-danger': task.status === 'to-do', 
-              'text-warning': task.status === 'in-progress',
-              'text-success': task.status === 'finished'
-              }"
-            >
-              {{firstCharUpper(task.status)}}
-            </span>
-          </td>
-          <td>
-            <div class="text-center" @click="editTask(index)">
-              <span class="fa fa-pen"></span>
-            </div>
-          </td>
-          <td>
-            <div class="text-center" @click="deleteTask(index)">
-              <span class="fa fa-trash"></span>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    
   </div>
 </template>
 
 <script>
-export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String,
-  },
 
+export default {
+  name:'Todoapp',
   data(){
     return {
       task: '',
@@ -110,7 +110,7 @@ export default {
     },
     firstCharUpper(str){
       return str.charAt(0).toUpperCase() + str.slice(1);
-    }
+    },
   }
 };
 </script>
