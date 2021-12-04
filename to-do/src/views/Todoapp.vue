@@ -53,7 +53,7 @@
 
 <script>
 export default {
-  name: 'Todoapp',
+  name: 'HelloWorld',
   props: {
     msg: String,
   },

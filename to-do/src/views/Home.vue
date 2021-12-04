@@ -11,8 +11,8 @@
 
         <!-- Login Form -->
         <form v-on:sumit.prevent="login">
-          <input type="text" id="login" class="fadeIn second" name="login" placeholder="User" v-model="User">
-          <input type="text" id="password" class="fadeIn third" name="login" placeholder="Password" v-model="Password">
+          <input type="text" id="login" class="fadeIn second" name="login" placeholder="usuario" v-model="usuario">
+          <input type="text" id="password" class="fadeIn third" name="login" placeholder="password" v-model="password">
           <input type="submit" class="fadeIn fourth" value="Log In">
         </form>
 
@@ -26,39 +26,41 @@
 </template>
 
 <script>
-import axios from 'axios';
-export default {
-  name: 'Home',
-  components: {
-    
-  },
-  data: function(){
-    return{
-      user: "",
-      password: "",
-      error: false, 
-      error_msg: ""
-    }
-  },
-  methods:{
-    login(){
-      let json = {
-        "user": this.user,
-        "password": this.password
-      };
-      axios.post('https://solodata.es/auth', json)/* ver esta direccion*/
-      .then( data =>{
-        if(data.data.status == 'ok'){
-          console.log("is ok")
+  import axios from 'axios';
 
-        }else{
-          this.error = true;
-          this.error_msg = data.data.result.error_msg;/* ver error al cambiar la contraseña en el console.log*/
-        }
-      })
+  export default {
+    name: 'Home',
+    components: {
+      
+    },
+
+    data: function(){
+      return {
+        usuario: "",
+        password: "",
+        error: false,
+        error_msg: "",
+      }
+    },
+    methods:{
+      login(){
+        let json = {
+          "usuario" : this.usuario,
+          "password": this.password
+        };
+        axios.post('https://solodata.es/auth', json)
+        .then( data =>{
+            if(data.data.status == "ok"){
+              localStorage.token = data.data.result.token;
+              this.$router.push('todoapp');
+            }else{
+              this.error = true;
+              this.error_msg = data.data.result.error_msg;
+            }
+        })
+      }
     }
-  },
-}
+  }
 </script>
 
 <style scoped>
