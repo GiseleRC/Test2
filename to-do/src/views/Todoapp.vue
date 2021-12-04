@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div >
     
       <div class="container" >
         <h2 class="text-center mt-5">My vue todo app</h2>

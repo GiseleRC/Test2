@@ -48,15 +48,15 @@
           "usuario" : this.usuario,
           "password": this.password
         };
-        axios.post('https://api.solodata.es/', json)
+        axios.post('http://api.solodata.es/auth', json)
         .then( data =>{
-            if(data.data.status == "ok"){
-              localStorage.token = data.data.result.token;
-              this.$router.push('todoapp');
-            }else{
-              this.error = true;
-              this.error_msg = data.data.result.error_msg;
-            }
+           if(data.data.status == "ok"){
+             localStorage.token = data.data.result.token;
+             this.$router.push('todoapp');
+           }else{
+             this.error = true;
+             this.error_msg = data.data.result.error_msg;
+           }
         })
       }
     }
