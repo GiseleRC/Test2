@@ -39,7 +39,7 @@
         usuario: "",
         password: "",
         error: false,
-        error_msg: "error",
+        error_msg: "",
       }
     },
     methods:{
