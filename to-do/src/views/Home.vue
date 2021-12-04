@@ -39,13 +39,13 @@
         usuario: "",
         password: "",
         error: false,
-        error_msg: "Constraseña incorrecta",
+        error_msg: "error",
       }
     },
     methods:{
       login(){
         let json = {
-          "usuario" : this.usuario,
+          "usuario": this.usuario,
           "password": this.password
         };
         axios.post('http://api.solodata.es/auth', json)

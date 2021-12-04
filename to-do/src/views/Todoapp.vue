@@ -5,12 +5,11 @@
         <h2 class="text-center mt-5">My vue todo app</h2>
 
         <!-- inputs -->
-        <form method="post" action="">
-          <div class="d-flex">
-            <input v-model="task" type="text" placeholder="Enter task" class="form-control">
-            <button @click="submitTask" class="btn btn-warning rounded-0">Submit</button>
-          </div>
-        </form>
+        <div class="d-flex">
+          <input v-model="task" type="text" placeholder="Enter task" class="form-control">
+          <button @click="submitTask" class="btn btn-warning rounded-0">Submit</button>
+        </div>
+
         <!-- task tab -->
         <table class="table table-bordered mt-5">
           <thead>
@@ -57,7 +56,8 @@
 <script>
 
 export default {
-  name:'Todoapp',
+  name:"Todoapp",
+  
   data(){
     return {
       task: '',
