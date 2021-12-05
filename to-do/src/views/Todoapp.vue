@@ -7,7 +7,7 @@
         <!-- inputs -->
         <div class="d-flex">
           <input v-model="task" type="text" placeholder="Enter task" class="form-control">
-          <button @click="submitTask" class="btn btn-warning rounded-0">Submit</button>
+          <button @click="addTask" class="btn btn-warning rounded-0">Add</button>
         </div>
 
         <!-- task tab -->
@@ -54,38 +54,42 @@
 </template>
 
 <script>
+import Task from './classes/task.js'
 
 export default {
   name:"Todoapp",
   
   data(){
     return {
-      task: '',
-      editedTask: null,
-      availableStatusses: ['to-do', 'in-progress', 'finished'],
+      form: {
+        body: '',
+        task: '',
 
-      tasks: [
-        {
-          name: 'Go to the market',
-          status: 'To-do',
-          },
-        {
-          name: 'Go to the bed',
-          status: 'In-progres',
-        }
-      ]
+        editedTask: null,
+
+        availableStatusses: ['to-do', 'in-progress', 'finished'],
+
+        tasks: [
+          {
+            name: 'Example of task',
+            status: 'To-do',
+            }
+        ]
+        
+      }
     }
   },
 
   methods: {
-    submitTask(){
+    addTask(){
       if(this.task.lenth === 0) return;
 
       if(this.editedTask === null){
-          this.tasks.push({
-          name: this.task, 
-          status: 'to-do'
-        });
+        this.tasks.push({
+        name: this.task, 
+        status: 'to-do',
+        })
+        Task.insert({data:this.form})
       }else{
         this.tasks[this.editedTask].name = this.task;
         this.editedTask = null;
