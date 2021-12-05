@@ -2,9 +2,10 @@
  Implement exercise - Ensolvers
  
 # Important
-- To run in terminal Visual Studio Code: 
------ cd to-do
------ npm run serve
+- To run in terminal Visual Studio Code:
+- 
+- cd to-do
+- npm run serve
 
 Login = Home.vue
     To access the todo list app, log in like this:
