@@ -8,7 +8,7 @@
 - npm run serve
 
 Login = Home.vue
-    To access the todo list app, log in like this:
+- To access the todo list app, log in like this:
     
 -------------------- Usuario: usuario1@gmail.com ----------------
 -------------------- Password: 123456 ---------------------------
